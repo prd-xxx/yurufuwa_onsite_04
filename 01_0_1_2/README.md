@@ -1,5 +1,8 @@
 # 0,1,2
 
+最新の内容は下記 (TODO: READMEに同期する)  
+https://forcia.esa.io/posts/20488   
+
 ## Challenge Name
 
 0,1,2
