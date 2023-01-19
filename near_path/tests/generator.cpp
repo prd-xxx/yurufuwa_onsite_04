@@ -17,6 +17,7 @@ struct Input {
                 ensure(S[i][j] == '.' || S[i][j] == '#');
             }
         }
+        ensure(S[0][0]=='.' && S[H - 1][W - 1]=='.');
         fout.close();
     }
 };
@@ -173,6 +174,7 @@ Input generateAnsLarge(){
             if(i%3==1 && j%3==1) mp[i][j] = '#';
         }
     }
+    mp[0][0] = mp[H - 1][W - 1] = '.';
     return Input(H,W,mp);
 }
 
@@ -199,6 +201,7 @@ Input generateAnsLargeRnd(){
         int y = rnd.next(0,W - 1);
         mp[x][y] = '.';
     }
+    mp[0][0] = mp[H - 1][W - 1] = '.';
     return Input(H,W,mp);
 }
 
