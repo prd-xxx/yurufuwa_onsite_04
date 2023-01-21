@@ -233,6 +233,37 @@ Input handmade2(){
     return Input(H,W,mp);
 }
 
+Input sample1(){
+    int H = 3,W = 3;
+    vector<vector<char>> S(H);
+    S[0] = {'.','.','.'};
+    S[1] = {'.','#','.'};
+    S[2] = {'.','.','.'};
+    return Input(H,W,S);
+}
+
+Input sample2(){
+    int H = 3,W = 2;
+    vector<vector<char>> S(H);
+    S[0] = {'.','.'};
+    S[1] = {'.','.'};
+    S[2] = {'.','.'};
+    return Input(H,W,S);
+}
+
+Input sample3(){
+    int H = 7,W = 8;
+    vector<vector<char>> S(H);
+    S[0] = {'.','.','.','.','.','#','.','.'};
+    S[1] = {'.','#','.','.','.','.','#','.'};
+    S[2] = {'.','.','.','.','#','.','.','.'};
+    S[3] = {'#','.','.','.','.','.','#','.'};
+    S[4] = {'.','.','#','.','#','.','.','.'};
+    S[5] = {'#','.','.','.','.','.','.','.'};
+    S[6] = {'#','#','#','.','.','#','#','.'};
+    return Input(H,W,S);
+}
+
 int main(int argc, char *argv[]) {
   registerGen(argc, argv, 1);
   generateTestCase(generateMinRnd, 5, "01_rnd");
@@ -244,4 +275,7 @@ int main(int argc, char *argv[]) {
   generateTestCase(generateOnlyWay,2,"01_special");
   generateTestCase(handmade1,2,"01_hnd");
   generateTestCase(handmade2,2,"02_hnd");
+  generateTestCase(sample1,1,"01_sample");
+  generateTestCase(sample2,1,"02_sample");
+  generateTestCase(sample3,1,"03_sample");
 }
