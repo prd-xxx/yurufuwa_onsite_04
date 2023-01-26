@@ -10,12 +10,12 @@ script_generator(src='generator.py')
 
 ## Input validators.
 #c_validator(src='validator.c')
-#cxx_validator(src='validator.cc', dependency=['testlib.h'])
+cxx_validator(src='validator.cpp', dependency=['testlib.h'])
 #java_validator(src='Validator.java', encoding='UTF-8',
 #               mainclass='tmp/validator/Validator')
 #rust_validator(src='validator.rs')
 #go_validator(src='validator.go')
-script_validator(src='validator.py')
+#script_validator(src='validator.py')
 
 ## Output judges.
 #c_judge(src='judge.c')
@@ -42,7 +42,7 @@ script_validator(src='validator.py')
 #icpc_merger(input_terminator='0 0\n',
 #            output_replace=casenum_replace('Case 1', 'Case {0}'))
 #gcj_merger(output_replace=casenum_replace('Case 1', 'Case {0}'))
-id='X'
+id='C'
 #merged_testset(name=id + '_Merged', input_pattern='*.in')
 #subtask_testset(name='All', score=100, input_patterns=['*'])
 # precisely scored by judge program like Jiyukenkyu (KUPC 2013)
