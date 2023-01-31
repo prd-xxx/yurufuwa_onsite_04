@@ -16,4 +16,5 @@ int main() {
     set<int> s;
     for(int i=0;i<n;i++) s.insert(a[i]);
     assert(s.size()==n);
+    assert(a[0]==1);
 }

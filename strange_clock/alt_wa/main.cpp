@@ -67,8 +67,15 @@ vector<double> convolve(vector<double> a, vector<double> b) {
 const int mx = 200000;
 ll a[200010],e[200010],cnt[200010],f[200010],g[200010];
 double eps = 1E-10;
+const int B = 5000;
+bool used[5001][5001];
+int gcd(int x,int y){
+    if(x<y) swap(x,y);
+    if(y==0) return x;
+    return gcd(x%y,y);
+}
 int main(){
-    //wirterが作業するまでコメントアウト
+    // //wirterが作業するまでコメントアウト
     // int i,j,n; cin >> n;
     // for(i=0;i<n;i++) cin >> a[i];
     // vector<double> b(mx + 1),c(mx + 1);
@@ -79,20 +86,30 @@ int main(){
     // for(i=mx + 1;i<=2*mx;i++){
     //     if(d[i]>eps) e[i - mx]++;
     // }
-    // for(i=1;i<=mx;i++){
-    //     for(j=i;j<=mx;j+=i){
-    //         if(e[j]) cnt[i]++;
+    // // 全部調べられそうだったら調べる。無理ならテキトーに出力
+    // ll sum = 0;
+    // for(i=1;i<=mx;i++) sum += e[i - mx];
+    // if(sum>=B){
+    //     ll M = 0;
+    //     for(ll i=1;i<=mx;i++){
+    //         if(e[i]) M = max(M,i);
     //     }
-    // }
-    // for(i=1;i<=mx;i++){
-    //     if(cnt[i]) f[i] = 1;
-    // }
-    // for(i=mx;i>=1;i--){
-    //     for(j=2*i;j<=mx;j+=i){
-    //         f[i] -= f[j];
+    //     cout << M*(M + 1)/2 << "\n";
+    // }else{
+    //     for(i=1;i<=mx;i++){
+    //         if(!e[i]) continue;
+    //         for(j=1;j<=i;j++){
+    //             int g = gcd(j,i);
+    //             int x = j/g,y = i/g;
+    //             used[x][y] = true;
+    //         }
     //     }
+    //     int ans = 0;
+    //     for(i=1;i<=B;i++){
+    //         for(j=1;j<=B;j++){
+    //             if(used[i][j]) ans++;
+    //         }
+    //     }
+    //     cout << ans << "\n";
     // }
-    // ll ans = 0;
-    // for(j=1;j<=mx;j++) (ans += f[j]*j);
-    // cout << ans << "\n";
 }
