@@ -62,7 +62,7 @@ Input generateRndomTestCase() {
     std::random_device rnd;
     for (int i = 0; i < N; ++i) {
         int rndm = rnd()%(N*2);
-        if(rndm==0){S.push_back('0');}
+        if(rndm==0){S.push_back('1');}
         else {
             S.push_back(abs(rndm)%8+'2');
         }
