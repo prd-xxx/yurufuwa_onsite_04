@@ -52,37 +52,41 @@ ll lcm(ll a, ll b) {
 
 
 int main() {
-    ll A, B;
-    cin >> A >> B;
+	ll T;
+	cin >>T;
+	rep(t,T){
+		ll A, B;
+		cin >> A >> B;
 
-	ll now = 1;
+		ll now = 1;
 
 
-	rep(i, A) {
-		ll x = 0;
-		ll y = i;
-		
-		ll cnt = 0;
-		while (1) {
-			cnt++;
-			if (y < B) {
-				x = 1 - x;
-			}
-			if (x == 0) {
-				y = A - 1 - y;
-			}
-			else {
-				y = B - 1 - y;
+		rep(i, A) {
+			ll x = 0;
+			ll y = i;
+			
+			ll cnt = 0;
+			while (1) {
+				cnt++;
+				if (y < B) {
+					x = 1 - x;
+				}
+				if (x == 0) {
+					y = A - 1 - y;
+				}
+				else {
+					y = B - 1 - y;
+				}
+
+				if (x == 0 && y == i) {
+					break;
+				}
 			}
 
-			if (x == 0 && y == i) {
-				break;
-			}
+			now = lcm(now, cnt);
+			now = now % 998244353; //意味はないが一応
+
 		}
-
-		now = lcm(now, cnt);
-		now = now % 998244353; //意味はないが一応
-
+		cout << now << endl;
 	}
-	cout << now << endl;
 }

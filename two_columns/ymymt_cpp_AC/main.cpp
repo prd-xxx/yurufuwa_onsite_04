@@ -43,24 +43,28 @@ ll smd(ll a, ll b) {
 
 
 int main() {
-    ll A, B;
-    cin >> A >> B;
+	ll T;
+	cin >> T;
+	rep(t,T){
+    	ll A, B;
+		cin >> A >> B;
 
-	if (A - B == 1) {
-		cout << smd(A,B) << endl;
-		return 0;
-	}
-	if (A - B == 2 && A%2==1) {
-		cout << pmd(A,B) << endl;
-		return 0;
+		if (A - B == 1) {
+			cout << smd(A,B) << endl;
+			continue;
+		}
+		if (A - B == 2 && A%2==1) {
+			cout << pmd(A,B) << endl;
+			continue;
+		}
+
+		ll Q = B / (A - B);
+		if (A % (A - B) == 0) {
+			cout << pmd(2 * Q + 1,2) << endl;
+		}
+		else {
+			cout << pmd((2 * Q + 1), (2 * Q + 3) * 2) << endl;
+		}
 	}
 
-	ll Q = B / (A - B);
-	if (A % (A - B) == 0) {
-        cout << pmd(2 * Q + 1,2) << endl;
-    }
-    else {
-        cout << pmd((2 * Q + 1), (2 * Q + 3) * 2) << endl;
-    }
-	
 }

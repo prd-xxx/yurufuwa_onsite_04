@@ -22,16 +22,22 @@ using namespace std;
 #include "testlib.h"
 
 using namespace std;
+#define rep(i,x) for(int i=0;i<x;i++)
+
+
 struct Input {
-    int A;
-    int B;
-    Input(int A, int B)
-        : A(A), B(B) {
+    int T;
+    vector<int> A;
+    vector<int> B;
+    Input(int T, vector<int> A, vector<int> B)
+        : T(T), A(A), B(B) {
     }
     void print(const string fileName) {
         ofstream fout(fileName);
-        fout << A << "\n";
-        fout << B << "\n";
+        fout << T << "\n";
+        rep(t,T) {
+            fout << A[t] << " " << B[t] << "\n";
+        }
         fout.close();
     }
 };
@@ -58,34 +64,45 @@ void generateTestCase(const GenerateRule& g, const int NumOfCases, const string 
 
 Input generateRndomTestCase() {
     std::random_device rnd;
-    int mx = 1000; ///////////////////後でなおす！
-    while(1){
-    int A = abs((int)rnd())%mx+1;
-    int B = abs((int)rnd())%mx+1;
-    if(A<B){swap(A,B);}
-    if(A>B){
-        return Input(A, B);
+    int T = 20000;
+    vector<int> A,B;
+    int mx = 10000000;
+    rep(t,T){
+        while(1){
+            int x = abs((int)rnd())%mx+1;
+            int y = abs((int)rnd())%mx+1;
+             if(x>y){
+                A.push_back(x);
+                B.push_back(y);
+                break;
+            }
+        }
     }
-    }
+    return Input(T, A, B);
 }
 
-Input generateDif1TestCase() {
+Input generateSmallDiffTestCase() {
     std::random_device rnd;
-    int mx = 1000;
-    int A = abs((int)rnd())%(mx-1)+2;
-    return Input(A, A-1);
-}
-
-Input generateDif2TestCase() {
-    std::random_device rnd;
-    int mx = 1000;
-    int A = abs((int)rnd())%(mx-2)+3;
-    return Input(A, A-2);
+    int T = 20000;
+    vector<int> A,B;
+    int mx = 10000000;
+    int dif = 100;
+    rep(t,T){
+        while(1){
+            int x = abs((int)rnd())%mx+1;
+            int y = x - abs((int)rnd())%dif - 1;
+             if(y > 0){
+                A.push_back(x);
+                B.push_back(y);
+                break;
+            }
+        }
+    }
+    return Input(T, A, B);
 }
 
 int main(int argc, char *argv[]) {
     registerGen(argc, argv, 1);
-    generateTestCase(generateRndomTestCase, 15, "rnd");
-    generateTestCase(generateDif1TestCase, 15, "dif1");
-    generateTestCase(generateDif2TestCase, 15, "dif2");
+    generateTestCase(generateRndomTestCase, 2, "rnd");
+    generateTestCase(generateSmallDiffTestCase, 2, "difsml");
 }
