@@ -24,6 +24,9 @@ using namespace std;
 using namespace std;
 #define rep(i,x) for(int i=0;i<x;i++)
 
+int MX = 10000000;
+int SML = 20;
+
 
 struct Input {
     int T;
@@ -61,28 +64,49 @@ void generateTestCase(const GenerateRule& g, const int NumOfCases, const string 
     }
 }
 
-Input generateRndomTestCase() {
+void generateRndTestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
+    int mx = MX;
+    while(1){
+        std::random_device rnd;
+        int x = abs((int)rnd())%mx+1;
+        int y = abs((int)rnd())%mx+1;
+        int z = abs((int)rnd())%mx+1;
+        if(x>y && y>z){
+            A.push_back(x);
+            B.push_back(y);
+            C.push_back(z);
+            return;
+        }
+    }
+}
+
+void generateC1TestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
+    int mx = SML;
+    while(1){
+        std::random_device rnd;
+        int x = abs((int)rnd())%mx+1;
+        int y = abs((int)rnd())%mx+1;
+        int z = 1;
+        if(x>y && y>z){
+            A.push_back(x);
+            B.push_back(y);
+            C.push_back(z);
+            return;
+        }
+    }
+}
+
+Input generateMultiTestCase() {
     std::random_device rnd;
     int T = 20000;
     vector<int> A,B,C;
-    int mx = 1000000;
     rep(t,T){
-        while(1){
-            int x = abs((int)rnd())%mx+1;
-            int y = abs((int)rnd())%mx+1;
-            int z = abs((int)rnd())%mx+1;
-             if(x>y && y>z){
-                A.push_back(x);
-                B.push_back(y);
-                C.push_back(z);
-                break;
-            }
-        }
+       generateRndTestCase(A, B, C);
     }
     return Input(T, A, B, C);
 }
 
 int main(int argc, char *argv[]) {
     registerGen(argc, argv, 1);
-    generateTestCase(generateRndomTestCase, 2, "rnd");
+    generateTestCase(generateMultiTestCase, 2, "rnd");
 }

@@ -84,23 +84,7 @@ ll A, B, C;
 ll solveAC() {
 
 	auto ishalf = [&](ll cur, ll nxt) {
-		if (nxt > cur + 2) { return false; }
-		for (ll x = cur; x < nxt; x++) {
-			if (A % 2 == 1 && x % (A - C) == (A / 2) % (A - C)) {
-				continue;
-			}
-			if (A % 2 == 1 && (A-1-x) % (A - C) == (A / 2) % (A - C)) {
-				continue;
-			}
-			if (C % 2 == 1 && x % (A - C) == (C / 2) % (A - C)) {
-				continue;
-			}
-			if (C % 2 == 1 && (A-1-x) % (A - C) == (C / 2) % (A - C)) {
-				continue;
-			}
-			return false;
-		}
-		return true;
+		return false;
 	};
 
 	set<ll> st;
@@ -178,23 +162,7 @@ ll solveAB1() {
 // B + C <= A
 ll solveAB2() {
 	auto ishalf = [&](ll cur, ll nxt) {
-		if (nxt > cur + 2) { return false; }
-		for (ll x = cur; x < nxt; x++) {
-			if (A % 2 == 1 && x % (A - B) == (A / 2) % (A - B)) {
-				continue;
-			}
-			if (A % 2 == 1 && (A - 1 - x) % (A - B) == (A / 2) % (A - B)) {
-				continue;
-			}
-			if (B % 2 == 1 && x % (A - B) == (B / 2) % (A - B)) {
-				continue;
-			}
-			if (B % 2 == 1 && (A - 1 - x) % (A - B) == (B / 2) % (A - B)) {
-				continue;
-			}
-			return false;
-		}
-		return true;
+		return false;
 	};
 
 	set<ll> st;
