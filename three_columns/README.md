@@ -50,7 +50,7 @@ A_1 A_2 A_3
 ## Constraints
 
 - $1 \leq T \leq 200000$
-- $0 < A_3 < A_2 < A_1 < \leq 10^7$
+- $0 < A_3 < A_2 < A_1 \leq 10^7$
 - 入力は整数で与えられる。
 
 ## Output Format
