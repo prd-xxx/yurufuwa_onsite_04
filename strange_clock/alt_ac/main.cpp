@@ -68,31 +68,30 @@ const int mx = 200000;
 ll a[200010],e[200010],cnt[200010],f[200010],g[200010];
 double eps = 1E-10;
 int main(){
-    //wirterが作業するまでコメントアウト
-    // int i,j,n; cin >> n;
-    // for(i=0;i<n;i++) cin >> a[i];
-    // vector<double> b(mx + 1),c(mx + 1);
-    // for(i=0;i<n;i++){
-    //     b[a[i]] = 1; c[mx - a[i]] = 1;
-    // }
-    // vector<double> d = convolve(b,c);
-    // for(i=mx + 1;i<=2*mx;i++){
-    //     if(d[i]>eps) e[i - mx]++;
-    // }
-    // for(i=1;i<=mx;i++){
-    //     for(j=i;j<=mx;j+=i){
-    //         if(e[j]) cnt[i]++;
-    //     }
-    // }
-    // for(i=1;i<=mx;i++){
-    //     if(cnt[i]) f[i] = 1;
-    // }
-    // for(i=mx;i>=1;i--){
-    //     for(j=2*i;j<=mx;j+=i){
-    //         f[i] -= f[j];
-    //     }
-    // }
-    // ll ans = 0;
-    // for(j=1;j<=mx;j++) (ans += f[j]*j);
-    // cout << ans << "\n";
+    int i,j,n; cin >> n;
+    for(i=0;i<n;i++) cin >> a[i];
+    vector<double> b(mx + 1),c(mx + 1);
+    for(i=0;i<n;i++){
+        b[a[i]] = 1; c[mx - a[i]] = 1;
+    }
+    vector<double> d = convolve(b,c);
+    for(i=mx + 1;i<=2*mx;i++){
+        if(d[i]>eps) e[i - mx]++;
+    }
+    for(i=1;i<=mx;i++){
+        for(j=i;j<=mx;j+=i){
+            if(e[j]) cnt[i]++;
+        }
+    }
+    for(i=1;i<=mx;i++){
+        if(cnt[i]) f[i] = 1;
+    }
+    for(i=mx;i>=1;i--){
+        for(j=2*i;j<=mx;j+=i){
+            f[i] -= f[j];
+        }
+    }
+    ll ans = 0;
+    for(j=1;j<=mx;j++) (ans += f[j]*j);
+    cout << ans << "\n";
 }
