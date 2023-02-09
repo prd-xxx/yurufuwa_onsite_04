@@ -72,7 +72,7 @@ vector<double> convolve(vector<double> a, vector<double> b) {
 const int mx = 200000;
 ll a[200010],e[200010],cnt[200010],f[200010],g[200010];
 double eps = 1E-10;
-const int B = 5000000;
+const int B = 10000;
 int gcd(int x,int y){
     if(x<y) swap(x,y);
     if(y==0) return x;
@@ -110,7 +110,7 @@ int main(){
     // 全部調べられそうだったら調べる。無理ならテキトーに出力
     ll sum = 0;
     for(i=1;i<=mx;i++){
-        if(e[i]) sum += i;
+        if(e[i]) sum++;
     }
     if(sum>=B){
         ll M = 0;

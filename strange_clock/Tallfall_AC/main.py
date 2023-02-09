@@ -1,4 +1,4 @@
-#!/home/forcia/.pyenv/shims/python
+#!/usr/bin/env python3
 
 import sys
 readline = sys.stdin.readline
