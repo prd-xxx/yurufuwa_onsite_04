@@ -5,6 +5,7 @@ import random
 testcases = []
 
 testcases.append([0,1,1,2,2]) # sample 1
+testcases.append([2,0,1,1,2,1,1,1,1,2,1,0,1,1,1,1,2,0,1,2]) # sample 2
 
 #minimum N=2
 for i in range(3):
