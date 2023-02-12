@@ -25,7 +25,7 @@ using namespace std;
 #define rep(i,x) for(int i=0;i<x;i++)
 
 int MX = 10000000;
-int SML = 20;
+int SML = 30;
 
 
 struct Input {
@@ -64,14 +64,25 @@ void generateTestCase(const GenerateRule& g, const int NumOfCases, const string 
     }
 }
 
+bool valid(int x, int y, int z) {
+    return MX >= x && x > y && y > z && z >= 1;
+}
+
+int mxrnd() {
+    random_device rnd;
+    return abs((int)rnd())%MX+1;
+}
+int smlrnd() {
+    random_device rnd;
+    return abs((int)rnd())%SML+1;
+}
+
 void generateRndTestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
-    int mx = MX;
     while(1){
-        std::random_device rnd;
-        int x = abs((int)rnd())%mx+1;
-        int y = abs((int)rnd())%mx+1;
-        int z = abs((int)rnd())%mx+1;
-        if(x>y && y>z){
+        int x = mxrnd();
+        int y = mxrnd();
+        int z = mxrnd();
+        if(valid(x,y,z)){
             A.push_back(x);
             B.push_back(y);
             C.push_back(z);
@@ -80,14 +91,54 @@ void generateRndTestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
     }
 }
 
-void generateC1TestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
-    int mx = SML;
+void generateMMMTestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
     while(1){
-        std::random_device rnd;
-        int x = abs((int)rnd())%mx+1;
-        int y = abs((int)rnd())%mx+1;
-        int z = 1;
-        if(x>y && y>z){
+        int x = mxrnd();
+        int y = x - smlrnd();
+        int z = y - smlrnd();
+        if(valid(x,y,z)){
+            A.push_back(x);
+            B.push_back(y);
+            C.push_back(z);
+            return;
+        }
+    }
+}
+
+void generateMMSTestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
+    while(1){
+        int x = mxrnd();
+        int y = x - smlrnd();
+        int z = smlrnd();
+        if(valid(x,y,z)){
+            A.push_back(x);
+            B.push_back(y);
+            C.push_back(z);
+            return;
+        }
+    }
+}
+
+void generateMSSTestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
+    while(1){
+        int x = mxrnd();
+        int y = smlrnd();
+        int z = smlrnd();
+        if(valid(x,y,z)){
+            A.push_back(x);
+            B.push_back(y);
+            C.push_back(z);
+            return;
+        }
+    }
+}
+
+void generateSSSTestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
+    while(1){
+        int x = smlrnd();
+        int y = smlrnd();
+        int z = smlrnd();
+        if(valid(x,y,z)){
             A.push_back(x);
             B.push_back(y);
             C.push_back(z);
@@ -100,13 +151,29 @@ Input generateMultiTestCase() {
     std::random_device rnd;
     int T = 20000;
     vector<int> A,B,C;
-    rep(t,T){
+    rep(t,T/5){
        generateRndTestCase(A, B, C);
+       generateMMMTestCase(A, B, C);
+       generateMMSTestCase(A, B, C);
+       generateMSSTestCase(A, B, C);
+       generateSSSTestCase(A, B, C);
     }
     return Input(T, A, B, C);
 }
 
+Input generateSample() {
+    std::random_device rnd;
+    int T = 2;
+    vector<int> A,B,C;
+    A = {3,5};
+    B = {2,3};
+    C = {1,2};
+    return Input(T, A, B, C);
+}
+
+
 int main(int argc, char *argv[]) {
     registerGen(argc, argv, 1);
     generateTestCase(generateMultiTestCase, 2, "rnd");
+    generateTestCase(generateSample, 1, "sample");
 }
