@@ -46,31 +46,51 @@ void incrementId(string& s) {
 }
 
 template <class GenerateRule>
-void generateTestCase(const GenerateRule& g, const int NumOfCases, const string caseName) {
+void generateTestCase(const GenerateRule& g, vector<int> bunpu, const int NumOfCases, const string caseName) {
     string id = "00";
     for (int i = 0; i < NumOfCases; i++) {
-        Input input = g();
+        Input input = g(bunpu);
         string filename = caseName + "_" + id + ".in";
         input.print(filename);
         incrementId(id);
     }
 }
 
-Input generateRndomTestCase() {
+Input generateRndomTestCase(vector<int> bunpu) {
+    vector<int> rbunpu(10);
+    rbunpu[0]=0;
+    for (int i = 0; i < 9; i++) {
+        rbunpu[i+1] = rbunpu[i] + bunpu[i];
+    }
     int N = 200000;
     string S;
     std::random_device rnd;
     for (int i = 0; i < N; ++i) {
-        int rndm = rnd()%(N*2);
-        if(rndm==0){S.push_back('1');}
-        else {
-            S.push_back(abs(rndm)%8+'2');
+        int rndm = rnd()%(rbunpu.back());
+        for (int j = 1; j < 10; j++) {
+            if (rndm < rbunpu[j]) {
+                S.push_back('0'+j);
+                break;
+            }
         }
     }
     return Input(N, S);
 }
 
+Input sample1(vector<int> bunpu) {
+    return Input(3, "364");
+}
+Input sample2(vector<int> bunpu) {
+    return Input(2, "81");
+}
+
 int main(int argc, char *argv[]) {
     registerGen(argc, argv, 1);
-    generateTestCase(generateRndomTestCase, 30, "rnd");
+    generateTestCase(generateRndomTestCase, {0, 1, 1, 1, 1, 1, 1, 1, 1}, 10, "rnd");
+    generateTestCase(generateRndomTestCase, {1, 100, 100, 100, 100, 100, 100, 100, 100}, 10, "rnd1");
+    generateTestCase(generateRndomTestCase, {0, 1, 100, 1, 1, 5, 1, 1, 100}, 5, "rnd369");
+    generateTestCase(generateRndomTestCase, {0, 100, 1, 100, 5, 1, 1, 1, 1}, 5, "rnd245");
+    generateTestCase(generateRndomTestCase, {0, 0, 1, 1, 1, 1, 100, 100, 1}, 5, "rnd78");
+    generateTestCase(sample1, {}, 1, "sample1");
+    generateTestCase(sample2, {}, 1, "sample2");
 }
