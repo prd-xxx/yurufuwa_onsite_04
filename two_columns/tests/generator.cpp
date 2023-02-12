@@ -62,6 +62,11 @@ void generateTestCase(const GenerateRule& g, const int NumOfCases, const string 
     }
 }
 
+bool valid(int x, int y) {
+    int mx=10000000;
+    return mx>=x&&x>y&&y>=1;
+}
+
 Input generateRndomTestCase() {
     std::random_device rnd;
     int T = 20000;
@@ -71,7 +76,7 @@ Input generateRndomTestCase() {
         while(1){
             int x = abs((int)rnd())%mx+1;
             int y = abs((int)rnd())%mx+1;
-             if(x>y){
+             if(valid(x,y)){
                 A.push_back(x);
                 B.push_back(y);
                 break;
@@ -86,12 +91,12 @@ Input generateSmallDiffTestCase() {
     int T = 20000;
     vector<int> A,B;
     int mx = 10000000;
-    int dif = 100;
+    int dif = 20;
     rep(t,T){
         while(1){
             int x = abs((int)rnd())%mx+1;
             int y = x - abs((int)rnd())%dif - 1;
-             if(y > 0){
+             if(valid(x,y)){
                 A.push_back(x);
                 B.push_back(y);
                 break;
@@ -101,8 +106,41 @@ Input generateSmallDiffTestCase() {
     return Input(T, A, B);
 }
 
+Input generateBaisuTestCase() {
+    std::random_device rnd;
+    int T = 20000;
+    vector<int> A,B;
+    int mx= 3000;
+    rep(t,T){
+        while(1){
+            int a = abs((int)rnd())%mx+1;
+            int b = (abs((int)rnd())%mx+1);
+            int x = a * b;
+            int y = x - a;
+             if(valid(x,y)){
+                A.push_back(x);
+                B.push_back(y);
+                break;
+            }
+        }
+    }
+    return Input(T, A, B);
+}
+
+Input generateSample() {
+    vector<int> A,B;
+    A.push_back(2);
+    B.push_back(1);
+    
+    A.push_back(5);
+    B.push_back(4);
+    return Input(2, A, B); 
+}
+
 int main(int argc, char *argv[]) {
     registerGen(argc, argv, 1);
-    generateTestCase(generateRndomTestCase, 2, "rnd");
-    generateTestCase(generateSmallDiffTestCase, 2, "difsml");
+    generateTestCase(generateSample, 1, "sample");
+    generateTestCase(generateRndomTestCase, 1, "rnd");
+    generateTestCase(generateSmallDiffTestCase, 1, "difsml");
+    generateTestCase(generateBaisuTestCase, 1, "baisu");
 }
