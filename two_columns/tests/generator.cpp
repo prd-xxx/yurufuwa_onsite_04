@@ -63,15 +63,15 @@ void generateTestCase(const GenerateRule& g, const int NumOfCases, const string 
 }
 
 bool valid(int x, int y) {
-    int mx=10000000;
+    int mx=1000000;
     return mx>=x&&x>y&&y>=1;
 }
 
 Input generateRndomTestCase() {
     std::random_device rnd;
-    int T = 20000;
+    int T = 200000;
     vector<int> A,B;
-    int mx = 10000000;
+    int mx = 1000000;
     rep(t,T){
         while(1){
             int x = abs((int)rnd())%mx+1;
@@ -88,9 +88,9 @@ Input generateRndomTestCase() {
 
 Input generateSmallDiffTestCase() {
     std::random_device rnd;
-    int T = 20000;
+    int T = 200000;
     vector<int> A,B;
-    int mx = 10000000;
+    int mx = 1000000;
     int dif = 20;
     rep(t,T){
         while(1){
@@ -108,9 +108,9 @@ Input generateSmallDiffTestCase() {
 
 Input generateBaisuTestCase() {
     std::random_device rnd;
-    int T = 20000;
+    int T = 200000;
     vector<int> A,B;
-    int mx= 3000;
+    int mx= 1000;
     rep(t,T){
         while(1){
             int a = abs((int)rnd())%mx+1;

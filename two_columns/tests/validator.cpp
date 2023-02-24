@@ -4,7 +4,7 @@
 using namespace std;
 
 const int MIN_T = 1, MAX_T = 200000;
-const int MIN_A = 1, MAX_A = 10000000;
+const int MIN_A = 1, MAX_A = 1000000;
 
 int main() {
     registerValidation();
