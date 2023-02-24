@@ -24,7 +24,7 @@ using namespace std;
 using namespace std;
 #define rep(i,x) for(int i=0;i<x;i++)
 
-int MX = 10000000;
+int MX = 1000000;
 int SML = 30;
 
 
@@ -149,7 +149,7 @@ void generateSSSTestCase(vector<int>&A, vector<int>&B, vector<int>&C) {
 
 Input generateMultiTestCase() {
     std::random_device rnd;
-    int T = 20000;
+    int T = 200000;
     vector<int> A,B,C;
     rep(t,T/5){
        generateRndTestCase(A, B, C);

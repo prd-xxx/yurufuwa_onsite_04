@@ -55,27 +55,10 @@ ll lm(set<ll> st) {
 
 	ll ret = 1;
 
-	vector<ll> v = { 2,3,5 };
-	for (ll p : v) {
-		ll mx = 0;
-		set<ll> nst;
-		for (ll x : st) {
-			ll cnt = 0;
-			while (x % p == 0) {
-				x /= p;
-				cnt++;
-			}
-			nst.insert(x);
-			mx = max(mx, cnt);
-		}
-		rep(i, mx)ret *= p;
-		st = nst;
+	for (ll x:st){
+		ret=lcm(ret,x);
 	}
-
-	for (ll x : st) {
-		ret = ret * x % 998244353;
-	}
-	return ret;
+	return ret % 998244353;
 }
 
 ll A, B, C;
